@@ -1,15 +1,11 @@
 package ru.vasyukov.StepDefinitions;
 
 import Pages.BasePage;
-import Pages.PageYandexMarketChoice;
-import Pages.PageYandexMarketMain;
-import Pages.PageYandexSearch;
+import Pages.PageSberAstMain;
 import io.cucumber.java.ru.Затем;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Когда;
 import io.cucumber.java.ru.Тогда;
-
-import java.util.List;
 
 /**
  * Класс определений для кукумбера
@@ -18,67 +14,36 @@ public class SberASTSteps {
     /**
      * Page Object-ы страниц
      */
-    private static PageYandexSearch pageYandexSearch;
-    private static PageYandexMarketMain pageYandexMarketMain;
-    private static PageYandexMarketChoice pageYandexMarketChoice;
+    private static PageSberAstMain pageSberAstMain;
 
-    @Когда("^Открываем Яндекс$")
-    public void openYandex () {
-        pageYandexSearch = BasePage.openFirstPageYandexSearch("1");
+    @Когда("Открываем Сбер-АСТ")
+    public void openSberAst () {
+        pageSberAstMain = BasePage.openFirstPageSberAst(1);
     }
 
-    @Тогда("^Проверяем title страницы Яндекс$")
-    public void checkTitleYandex () {
-        pageYandexSearch.checkYandexTitle("2");
+    @Тогда("Проверяем title страницы Сбер-АСТ")
+    public void checkSberAstTitle () {
+        pageSberAstMain.checkSberAstTitle(2);
     }
 
-    @Затем("^Переходим на Яндекс Маркет$")
-    public void goToYandexMarket () {
-        pageYandexMarketMain = pageYandexSearch.clickYandexMarketAndSwitch("3")
-                .nextPageYandexMarketMain();
+    @Когда("Вводим значение в поле поиска: {string}")
+    public void inputSearchField (String search) {
+        pageSberAstMain.inputSearchField(3, search);
     }
 
-    @Тогда("^Проверяем title страницы Яндекс Маркет$")
-    public void checkTitleYandexMarket () {
-        pageYandexMarketMain.checkYandexMarketTitle("4");
+    @Затем("Собираем найденные позиции по условиям: {double}, {string}, {string}, {int}, {int}")
+    public void collectAllPageResults (double price, String currency, String law,
+                                       int maxCountView, int countChoice) {
+        pageSberAstMain.collectAllPageResults(4, price, currency, law, maxCountView, countChoice);
     }
 
-    @Когда("^Открываем каталог и раздел$")
-    public void openCatalogChapter (List<String> itemNameMenu) {
-        pageYandexMarketMain.clickCatalogButton("5")
-                .clickItemCatalog("6", itemNameMenu.get(0));
+    @Тогда("Проверяем ожидаемое количество выборки: {int}")
+    public void checkHeadSubChapter (int countChoice) {
+        pageSberAstMain.assertResults(5, countChoice);
     }
 
-    @Тогда("^Проверяем заголовок раздела$")
-    public void checkHeadChapter (List<String> itemNameMenu) {
-        pageYandexMarketMain.checkHeadChapterCatalog("7", itemNameMenu.get(0));
-    }
-
-    @Затем("^Открываем подраздел$")
-    public void openSubChapter (List<String> itemNameSubMenu) {
-        pageYandexMarketChoice = pageYandexMarketMain.clickItemCatalog("8", itemNameSubMenu.get(0))
-                .nextPageYandexMarketChoice();
-    }
-
-    @Тогда("^Проверяем заголовок подраздела в крошках$")
-    public void checkHeadSubChapter (List<String> itemNameSubMenu) {
-        pageYandexMarketChoice.checkNameInCrumbs("9", itemNameSubMenu.get(0));
-    }
-
-    @Затем("^Раскрываем перечень производителей, ищем и отмечаем ([^ ]+)")
-    public void unfoldFactoriesAndMark (String factory) {
-        pageYandexMarketChoice.clickAllFactoriesButton("10")
-                .inputFactorySearch("11", factory)
-                .clickFactoryItemAndWait("12", factory);
-    }
-
-    @И("^Выбираем количество просмотра$")
-    public void choiceViewCount (List<String> countForOld) {
-        pageYandexMarketChoice.selectChoiceCountViewAndWaitForOld("13", countForOld.get(0));
-    }
-
-    @Тогда("^На всех найденных страницах проверяем производителя ([^ ]+)")
-    public void checkAllPages (String factory) {
-        pageYandexMarketChoice.checkAllPagesArticlesName("14", factory);
+    @И("Формируем отчеты в консоль и Аллюр")
+    public void reportResults () {
+        pageSberAstMain.reportResults(6);
     }
 }
