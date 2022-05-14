@@ -3,8 +3,8 @@ package ru.vasyukov.Hooks;
 import Custom.listeners.Listeners;
 import Custom.properties.TestData;
 import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -13,9 +13,8 @@ import org.openqa.selenium.support.events.WebDriverListener;
 import static com.codeborne.selenide.WebDriverRunner.*;
 
 /**
- * Родительский класс для тестов:
- *   настройка опций браузера и листенера первый раз,
- *   методы BeforeEach и AfterEach
+ * Класс для хуков (методы Before и After для каждого теста)
+ * Настройка опций браузера и листенера выполняется один раз перед всеми тестами
  */
 public class WebHooks {
     /**
@@ -54,7 +53,7 @@ public class WebHooks {
     /**
      * перед каждым тестом (тут нет, open в тесте)
      */
-    @BeforeEach
+    @Before
     public void openBrowser() {
     }
 
@@ -62,7 +61,7 @@ public class WebHooks {
      * Закрытие браузера после каждого теста,
      * необходимо при повторе теста по параметризованным производителям
      */
-    @AfterEach
+    @After
     public void closeBrowser() {
         //closeWindow();  // holdBrowserOpen с этим не работает
         closeWebDriver();
