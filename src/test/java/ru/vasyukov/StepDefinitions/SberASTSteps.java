@@ -38,7 +38,7 @@ public class SberASTSteps {
     }
 
     @Тогда("Проверяем ожидаемое количество выборки: {int}")
-    public void checkHeadSubChapter (int countChoice) {
+    public void assertResults (int countChoice) {
         pageSberAstMain.assertResults(5, countChoice);
     }
 
