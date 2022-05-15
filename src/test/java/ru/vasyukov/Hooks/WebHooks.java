@@ -54,8 +54,7 @@ public class WebHooks {
      * перед каждым тестом (тут нет, open в тесте)
      */
     @Before
-    public void openBrowser() {
-    }
+    public void openBrowser() { }
 
     /**
      * Закрытие браузера после каждого теста,
