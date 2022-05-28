@@ -1,4 +1,4 @@
-Тестирование выборки в Сбер-АСТ - Cucumber/Selenide
+Тестирование выборки в Сбер-АСТ - Cucumber/Selenide 
 
 # запуск всех тестов
 mvn clean test
