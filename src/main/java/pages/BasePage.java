@@ -1,6 +1,6 @@
-package Pages;
+package pages;
 
-import Custom.properties.TestData;
+import custom.properties.TestData;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.ElementClickInterceptedException;
@@ -21,16 +21,11 @@ public class BasePage {
     /**
      * Значение явного ожидания ms из проперти
      */
-    public long timeoutExplicitMs = Long.parseLong(TestData.props.defaultTimeoutExplicitMs());
+    public long timeoutExplicitMs = Long.parseLong(TestData.browser.defaultTimeoutExplicitMs());
     /**
      * Объект явных ожиданий (для метода реального клика)
      */
     private final WebDriverWait waitClick = new WebDriverWait(getWebDriver(), Duration.ofMillis(timeoutExplicitMs));
-
-    /**
-     * xPath title страницы
-     */
-    public String XPATH_TITLE = "//head/title";
 
     /**
      * Шаг Проверить фрагмент title страницы
@@ -39,7 +34,7 @@ public class BasePage {
      */
     @Step("step {step}. Проверить фрагмент title страницы '{title}'")  // step 2
     public void checkTitleFragment(int step, String title) {
-        $x(XPATH_TITLE).shouldHave(match("Проверка фрагмента title",
+        $x("//head/title").shouldHave(match("Проверка фрагмента title",
                 (el)-> el.getAttribute("textContent").contains(title)));
     }
 
@@ -57,7 +52,7 @@ public class BasePage {
      */
     @Step("step {step}. Открыть браузер и стартовую страницу Сбер-АСТ")  // step 1
     public static PageSberAstMain openFirstPageSberAst(int step) {
-        open(TestData.props.baseUrlSberAst());
+        open(TestData.browser.baseUrlSberAst());
         maxWindow();
         return page(PageSberAstMain.class); }
 

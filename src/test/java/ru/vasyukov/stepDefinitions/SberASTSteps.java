@@ -1,7 +1,7 @@
-package ru.vasyukov.StepDefinitions;
+package ru.vasyukov.stepDefinitions;
 
-import Pages.BasePage;
-import Pages.PageSberAstMain;
+import pages.BasePage;
+import pages.PageSberAstMain;
 import io.cucumber.java.ru.Затем;
 import io.cucumber.java.ru.И;
 import io.cucumber.java.ru.Когда;
