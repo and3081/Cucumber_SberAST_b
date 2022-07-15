@@ -7,6 +7,10 @@
 ## запуск всех тестов
 mvn clean test
 
+## запуск тестов по тегам
+задаются в классе RunnerTest в опции tags, например:
+tags = "@AllTests"
+
 ## построение отчета Allure
 mvn allure:serve
 
