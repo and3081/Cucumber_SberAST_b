@@ -8,6 +8,9 @@ import org.junit.runner.RunWith;
  * Точка запуска тестов кукумбера, и опции кукумбера
  * @author Васюков А.Ю.  GitHub  https://github.com/and3081/Cucumber_SberAST_b
  * @version 1.0
+ *
+ * В tags можно задавать выборочное выполнение тестов
+ *
  * Описание тест-кейса:
  * 1. сайт https://www.sberbank-ast.ru госзакупки
  * 2. проверить title
@@ -33,6 +36,8 @@ import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/java/ru/vasyukov/features",
-        glue = {"ru.vasyukov.stepDefinitions", "ru.vasyukov.hooks"}
+        glue = {"ru.vasyukov.stepDefinitions", "ru.vasyukov.hooks"},
+        plugin={"pretty"},
+        tags = "@AllTests"
 )
 public class RunnerTest {}
