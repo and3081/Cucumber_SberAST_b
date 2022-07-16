@@ -14,9 +14,6 @@ tags = "@AllTests"
 ## построение отчета Allure
 mvn allure:serve
 
-## настройки в классе DataProvider
-параметризация тестов
-
 ## настройки в проперти:
 * application.properties - настройки url и endpoints сайта
 * browser.properties - настройки браузеров и веб-драйвера
