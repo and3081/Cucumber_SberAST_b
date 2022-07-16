@@ -86,13 +86,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!--Для скринов-->
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.4</version>
-        </dependency>
-
         <!-- Для пропертей -->
         <dependency>
             <groupId>org.aeonbits.owner</groupId>
